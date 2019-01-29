@@ -1,10 +1,15 @@
 {
   "name": "reacoa",
   "version": "0.1.0",
-  "description": "\u0016\u001b[2~\u001b[2~\u001b[2~react+koa+electron--out-of-the-box.",
+  "description": "react+koa+electron--out-of-the-box.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init": "npm i && cd ./server && npm i && cd ../front && npm i  ",
+    "start": "electron ./server",
+    "build": "npm run build-win && npm run build-linux && npm run build-mac",
+    "build-win": "electron-packager ./server reacoa --platform=win32 --arch=x64 --out ./electron --app-version 1.0.0 --overwrite --asar",
+    "build-linux": "electron-packager ./server reacoa --platform=linux --arch=x64 --out ./electron --app-version 1.0.0 --overwrite --asar",
+    "build-mac": "electron-packager ./server reacoa --platform=darwin --arch=x64 --out ../electron --app-version 1.0.0 --overwrite --asar"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/yuri2peter/reacoa/issues"
   },
-  "homepage": "https://github.com/yuri2peter/reacoa#readme"
+  "homepage": "https://github.com/yuri2peter/reacoa#readme",
+  "devDependencies": {
+    "replace-in-file": "^3.4.3",
+    "electron": "^4.0.1",
+    "electron-packager": "^13.0.1",
+    "fs-extra": "^7.0.0",
+    "inquirer": "^6.2.1"
+  }
 }
