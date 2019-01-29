@@ -1,0 +1,19 @@
+{
+  "name": "reacoa",
+  "version": "0.1.0",
+  "description": "\u0016\u001b[2~\u001b[2~\u001b[2~react+koa+electron--out-of-the-box.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuri2peter/reacoa.git"
+  },
+  "author": "yuri2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuri2peter/reacoa/issues"
+  },
+  "homepage": "https://github.com/yuri2peter/reacoa#readme"
+}
