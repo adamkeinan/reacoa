@@ -4,5 +4,7 @@ module.exports = {
   resizable: true,
   enableDevTools: true,
   singleInstance: true,
-  home: '',
+  tray: true,
+  website: 'https://github.com/yuri2peter/reacoa',
+  about: 'Powered by Reacoa.\nhttps://github.com/yuri2peter/reacoa'
 };
