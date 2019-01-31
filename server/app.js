@@ -1,8 +1,9 @@
 const Koa = require('koa');
 const koaStatic = require('koa-static');
-const path = require('path');
 const cors = require('@koa/cors');
+const koaBody = require('koa-body');
 const uuid = require('uuid');
+const path = require('path');
 const router = require('./router');
 
 module.exports = async function server (preferPort = 80) {
@@ -10,6 +11,7 @@ module.exports = async function server (preferPort = 80) {
   const port = await require('get-port')({ port: preferPort });
   const app = new Koa();
   app.use(cors()); // Enable cors with default options
+  app.use(koaBody());
   router(app); // koa-router
   app.use(koaStatic(
     path.join( __dirname, './front')
