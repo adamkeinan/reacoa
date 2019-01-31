@@ -5,6 +5,7 @@ module.exports = {
   enableDevTools: true,
   singleInstance: true,
   tray: true,
+  menu: true,
   website: 'https://github.com/yuri2peter/reacoa',
   about: 'Powered by Reacoa.\nhttps://github.com/yuri2peter/reacoa'
 };

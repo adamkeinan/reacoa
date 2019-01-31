@@ -17,22 +17,59 @@ let closing = false;
     mainWindow.on('closed', function () {
       mainWindow = null
     });
+    const closeApp = () => {
+      closing = true;
+      app.quit();
+    };
+    const menuItems = {
+      separator: { type: 'separator' },
+      show: {
+        label: 'Show', type: 'normal',
+        click: () => {
+          mainWindow.show();
+        }
+      },
+      about: {
+        label: 'About', type: 'normal',
+        click: () => {
+          dialog.showMessageBox(mainWindow, {
+            type: 'info',
+            title: 'About',
+            message: config.about,
+          })
+        }
+      },
+      website: {
+        label: 'Website', type: 'normal',
+        click: () => {
+          shell.openExternal(config.website);
+        }
+      },
+      exit: {
+        label: 'Exit',
+        type: 'normal',
+        accelerator: 'CommandOrControl+Q',
+        click: closeApp,
+      },
+    };
     const registerKeys = () => {
       const bindKeys = () => {
         if (config.enableDevTools) {
-          globalShortcut.register('CommandOrControl+F12', () => {
+          globalShortcut.register('CommandOrControl+Shift+I', () => {
             if (config.enableDevTools) {
               mainWindow.webContents.openDevTools();
             }
           });
         }
-        globalShortcut.register('F5', () => {
+        globalShortcut.register('CommandOrControl+R', () => {
           mainWindow.reload();
         });
+        globalShortcut.register('CommandOrControl+Q', closeApp);
       };
       const unbindKeys = () => {
-        globalShortcut.unregister('CommandOrControl+F12');
-        globalShortcut.unregister('F5');
+        globalShortcut.unregister('CommandOrControl+Shift+I');
+        globalShortcut.unregister('CommandOrControl+R');
+        globalShortcut.unregister('CommandOrControl+Q');
 
       };
       mainWindow.on('blur', unbindKeys);
@@ -81,33 +118,12 @@ let closing = false;
       if (config.tray) {
         tray = new Tray(path.join(__dirname, './front/favicon.ico'));
         const contextMenu = Menu.buildFromTemplate([
-          { label: 'Show', type: 'normal',
-            click: () => {
-              mainWindow.show();
-            }
-          },
-          { type: 'separator' },
-          { label: 'Website', type: 'normal',
-            click: () => {
-              shell.openExternal(config.website);
-            }
-          },
-          { label: 'About', type: 'normal',
-            click: () => {
-              dialog.showMessageBox(mainWindow, {
-                type: 'info',
-                title: 'About',
-                message: config.about,
-              })
-            }
-          },
-          { type: 'separator' },
-          { label: 'Exit', type: 'normal',
-            click: () => {
-              closing = true;
-              app.quit();
-            }
-          },
+          menuItems.show,
+          menuItems.separator,
+          menuItems.website,
+          menuItems.about,
+          menuItems.separator,
+          menuItems.exit,
         ]);
         tray.on('double-click', () => {
           mainWindow.show();
@@ -131,10 +147,60 @@ let closing = false;
         })
       }
     };
+    const setMenu = () => {
+      if (config.menu) {
+        Menu.setApplicationMenu(Menu.buildFromTemplate([
+          {
+            label: 'Edit',
+            submenu: [
+              { role: 'undo' },
+              { role: 'redo' },
+              { type: 'separator' },
+              { role: 'cut' },
+              { role: 'copy' },
+              { role: 'paste' },
+              { role: 'pasteandmatchstyle' },
+              { role: 'delete' },
+              { role: 'selectall' }
+            ]
+          },
+          {
+            label: 'View',
+            submenu: [
+              { role: 'reload' },
+              { role: 'forcereload' },
+              ...(config.enableDevTools ? [{ role: 'toggledevtools' }] : []),
+              { type: 'separator' },
+              { role: 'resetzoom' },
+              { role: 'zoomin' },
+              { role: 'zoomout' },
+              { type: 'separator' },
+              { role: 'togglefullscreen' }
+            ]
+          },
+          {
+            role: 'window',
+            submenu: [
+              { role: 'minimize' },
+              { role: 'close' },
+              menuItems.exit,
+            ]
+          },
+          {
+            role: 'help',
+            submenu: [
+              menuItems.website,
+              menuItems.about,
+            ]
+          },
+        ]));
+      }
+    };
     singleCheck();
     initPage();
     registerKeys();
     setTray();
+    setMenu();
   });
   app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
