@@ -10,7 +10,7 @@ const reacoa = reacoaStorage ? JSON.parse(reacoaStorage) : {};
 class Example extends Component {
   inputRef = null;
   state = {
-    port: reacoa.port || 80,
+    port: reacoa.port || '80',
     online: false,
     fetching: true,
   };
@@ -52,6 +52,7 @@ class Example extends Component {
           <p>
             <span>http://127.0.0.1: </span>
             <input
+              style={{ width: `${(this.state.port.length + 1)*0.6}em` }}
               ref={(ref)=>{this.inputRef = ref;ref && ref.focus()}}
               className="App-port-input"
               onChange={this.onPortChange}
