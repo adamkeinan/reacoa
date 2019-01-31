@@ -29,3 +29,4 @@ yarn-error.log*
 /front/package-lock.json
 /server/package-lock.json
 /server/front/
+/front/build/
