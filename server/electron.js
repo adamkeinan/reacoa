@@ -6,7 +6,6 @@ let mainWindow; // Keep a global reference of the window object
 let tray;
 let closing = false;
 (async () => {
-  const { home, blank, port, appId } = await server(3001);
   app.on('ready', function createWindow () {
     Menu.setApplicationMenu(null);
     mainWindow = new BrowserWindow({
@@ -75,28 +74,33 @@ let closing = false;
       mainWindow.on('blur', unbindKeys);
       mainWindow.on('focus', bindKeys);
     };
-    const initPage = () => {
-      const loadHome = () => {
-        mainWindow.loadURL(home);
-        setTimeout(() => {
-          if (config.tray && tray) {
-            mainWindow.webContents.executeJavaScript('document.title', false, (title) => {
-              tray.setToolTip(title);
-            });
-          }
-        }, 1000)
-      };
-      const loadBlank = () => { mainWindow.loadURL(blank); };
-      loadBlank();
-      mainWindow.webContents.executeJavaScript(
-        `localStorage.setItem('reacoa', '${JSON.stringify({
-          port,
-          home,
-          appId,
-          electron: true,
-        })}')`,
-        false, loadHome
-      );
+    const initPage = async () => {
+      if (config.server) {
+        const { home, blank, port, appId } = await server(3001);
+        const loadHome = () => {
+          mainWindow.loadURL(home);
+          setTimeout(() => {
+            if (config.tray && tray) {
+              mainWindow.webContents.executeJavaScript('document.title', false, (title) => {
+                tray.setToolTip(title);
+              });
+            }
+          }, 1000)
+        };
+        const loadBlank = () => { mainWindow.loadURL(blank); };
+        loadBlank();
+        mainWindow.webContents.executeJavaScript(
+          `localStorage.setItem('reacoa', '${JSON.stringify({
+            port,
+            home,
+            appId,
+            electron: true,
+          })}')`,
+          false, loadHome
+        );
+      } else {
+        mainWindow.loadFile('./front/index.html');
+      }
     };
     const singleCheck = () => {
       if (config.singleInstance) {
