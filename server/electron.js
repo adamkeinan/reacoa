@@ -9,7 +9,7 @@ const config = {
 
 (async () => {
   let mainWindow;
-  const { home, blank, port } = await server(3001);
+  const { home, blank, port, appId } = await server(3001);
   app.on('ready', function createWindow () {
     Menu.setApplicationMenu(null);
     mainWindow = new BrowserWindow({ width: config.width, height: config.height });
@@ -23,6 +23,7 @@ const config = {
       `localStorage.setItem('reacoa', '${JSON.stringify({
         port,
         home,
+        appId,
         electron: true,
       })}')`,
       true, loadHome
