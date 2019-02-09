@@ -3,9 +3,11 @@ const path = require('path');
 const config = require('./config/electron');
 const server = require('./app');
 let mainWindow; // Keep a global reference of the window object
-let tray;
-let closing = false;
 (async () => {
+  let tray;
+  let showHiddenTips = true;
+  let closing = false;
+
   app.on('ready', function createWindow () {
     Menu.setApplicationMenu(null);
     mainWindow = new BrowserWindow({
@@ -76,24 +78,15 @@ let closing = false;
     };
     const initPage = async () => {
       if (config.server) {
-        const { home, blank, port, appId } = await server(3001);
-        const loadHome = () => {
-          mainWindow.loadURL(home);
-          setTimeout(() => {
-            if (config.tray && tray) {
-              mainWindow.webContents.executeJavaScript('document.title', false, (title) => {
-                tray.setToolTip(title);
-              });
-            }
-          }, 1000)
-        };
+        const { home, blank, port, seed } = await server(3001);
+        const loadHome = () => { mainWindow.loadURL(home); };
         const loadBlank = () => { mainWindow.loadURL(blank); };
         loadBlank();
         mainWindow.webContents.executeJavaScript(
           `localStorage.setItem('reacoa', '${JSON.stringify({
             port,
             home,
-            appId,
+            seed,
             electron: true,
           })}')`,
           false, loadHome
@@ -120,7 +113,11 @@ let closing = false;
     };
     const setTray = () => {
       if (config.tray) {
-        tray = new Tray(path.join(__dirname, './front/favicon.ico'));
+        try {
+          tray = new Tray(path.join(__dirname, './front/favicon.ico'));
+        } catch (e) {
+          tray = new Tray(path.join(__dirname, './assets/favicon.png'));
+        }
         const contextMenu = Menu.buildFromTemplate([
           menuItems.show,
           menuItems.separator,
@@ -138,6 +135,13 @@ let closing = false;
         mainWindow.on('close', (event) => {
           mainWindow.hide();
           mainWindow.setSkipTaskbar(true);
+          if (showHiddenTips) {
+            tray.displayBalloon({
+              title: app.getName(),
+              content: 'Running in tray mode.',
+            });
+            showHiddenTips = false;
+          }
           if (!closing) {
             event.preventDefault();
           }
