@@ -1,5 +1,6 @@
 const { app, Menu, BrowserWindow, globalShortcut, Tray, dialog, shell } = require('electron');
 const path = require('path');
+const fs = require('fs');
 const config = require('./config/electron');
 const server = require('./app');
 let mainWindow; // Keep a global reference of the window object
@@ -94,7 +95,17 @@ let mainWindow; // Keep a global reference of the window object
       } else if (typeof config.server === 'string' && config.server.length > 0) {
         mainWindow.loadURL(config.server);
       } else {
-        mainWindow.loadFile('./front/index.html');
+        const entrance = path.resolve(__dirname, './front/index.html');
+        if (fs.existsSync(entrance)) {
+          mainWindow.loadFile(entrance);
+        } else {
+          dialog.showMessageBox(mainWindow, {
+            type: 'info',
+            title: 'Missing Static Files',
+            message: 'Require compiled static files.\nTry "npm run build-front" first.',
+          });
+          closeApp();
+        }
       }
     };
     const singleCheck = () => {
