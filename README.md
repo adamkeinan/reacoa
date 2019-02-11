@@ -4,5 +4,5 @@ react+koa+electron--out-of-the-box.
 ## Usage
 
 ```
-npm run prepare && npm start
+npm run init && npm start
 ```
