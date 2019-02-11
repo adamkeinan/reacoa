@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import withDebounce from 'debounce-decorator'
+import withDebounce from 'debounce-decorator';
 import logo from './logo.svg';
 import './index.sass';
 

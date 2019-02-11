@@ -3,7 +3,8 @@ import withErrorBoundary from '../WithErrorBoundary';
 // import { observer } from 'mobx-react'
 // import classNames from 'classnames';
 // import ProtoTypes from 'prop-types';
-// import styles from './index.module.sass';
+// import cssStyles from './index.module.sass';
+// import cssStyles from './index.module.less';
 // import Model from './Model.js';
 
 @withErrorBoundary()
