@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import withErrorBoundary from '../WithErrorBoundary';
 // import { observer } from 'mobx-react'
 // import classNames from 'classnames';

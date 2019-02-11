@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import withErrorBoundary from '../component/lib/WithErrorBoundary';
 import TestPage from '../component/lib/Test';
 
