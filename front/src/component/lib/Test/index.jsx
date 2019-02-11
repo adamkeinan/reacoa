@@ -3,19 +3,20 @@ import withErrorBoundary from '../WithErrorBoundary';
 // import { observer } from 'mobx-react'
 // import classNames from 'classnames';
 // import ProtoTypes from 'prop-types';
-// import cssStyles from './index.module.sass';
-// import cssStyles from './index.module.less';
-// import Model from './Model.js';
+// import cssStyles from './index.module.scss';
+// import Model from './model.js';
+// import { } from '../../../model';
 
 @withErrorBoundary()
 // @observer
-class Template extends Component {
+class Test extends Component {
   render() {
     return (
       <React.Fragment>
+        TEST PAGE
       </React.Fragment>
     );
   }
 }
 
-export default Template;
+export default Test;
