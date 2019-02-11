@@ -77,7 +77,7 @@ let mainWindow; // Keep a global reference of the window object
       mainWindow.on('focus', bindKeys);
     };
     const initPage = async () => {
-      if (config.server) {
+      if (config.server === true) {
         const { home, blank, port, seed } = await server(3001);
         const loadHome = () => { mainWindow.loadURL(home); };
         const loadBlank = () => { mainWindow.loadURL(blank); };
@@ -91,6 +91,8 @@ let mainWindow; // Keep a global reference of the window object
           })}')`,
           false, loadHome
         );
+      } else if (typeof config.server === 'string' && config.server.length > 0) {
+        mainWindow.loadURL(config.server);
       } else {
         mainWindow.loadFile('./front/index.html');
       }

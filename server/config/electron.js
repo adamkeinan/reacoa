@@ -1,18 +1,18 @@
 const is = require('electron-is');
 
 const config = {
-  server: false,
   width: 1280,
   height: 720,
   resizable: true,
   enableDevTools: true,
   singleInstance: true,
+  server: false,
   tray: false,
   menu: false,
   website: 'https://github.com/yuri2peter/reacoa',
   about: 'Powered by Reacoa.\nhttps://github.com/yuri2peter/reacoa',
   win: {
-    tray: true,
+    tray: false,
     menu: true,
   },
   linux: {
