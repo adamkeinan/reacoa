@@ -4,7 +4,7 @@
   "description": "react+koa+electron--out-of-the-box.",
   "main": "index.js",
   "scripts": {
-    "init": "npm i & cd ./server & npm i & cd ../front & npm i && npm run build",
+    "init": "npm ci & cd ./server & npm ci & cd ../front & npm ci && npm run build",
     "start": "electron ./server",
     "build-front": "cd ./front & npm run build",
     "build-win": "electron-packager ./server reacoa --platform=win32 --arch=x64 --out ./electron --app-version 0.1.0 --overwrite --icon=./front/public/favicon.ico --asar",
