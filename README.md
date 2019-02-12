@@ -1,4 +1,7 @@
+![banner](./server/assets/reacoa-banner.png)
+
 # Reacoa
+
 Reacoa is a turnkey solution that integrates webpack, react, http-server and electron.
 > Enjoying it :)
 
