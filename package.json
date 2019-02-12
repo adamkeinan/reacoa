@@ -4,9 +4,9 @@
   "description": "react+koa+electron--out-of-the-box.",
   "main": "index.js",
   "scripts": {
-    "init": "npm ci & cd ./server & npm ci & cd ../front & npm ci && npm run build",
+    "init": "npm ci && cd ./server && npm ci && cd ../front && npm ci && npm run build",
     "start": "electron ./server",
-    "build-front": "cd ./front & npm run build",
+    "build-front": "cd ./front && npm run build",
     "build-win": "electron-packager ./server --platform=win32 --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
     "build-linux": "electron-packager ./server --platform=linux --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
     "build-mac": "electron-packager ./server --platform=darwin --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar"

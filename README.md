@@ -119,6 +119,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 - add related Doc links
 - fixed a typo in script build-mac
+- fixed a typo in script init
 
 ### [v0.1.2](https://github.com/yuri2peter/reacoa/tree/v0.1.2)
 
