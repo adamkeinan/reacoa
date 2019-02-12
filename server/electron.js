@@ -129,7 +129,7 @@ let mainWindow; // Keep a global reference of the window object
         try {
           tray = new Tray(path.join(__dirname, './front/favicon.ico'));
         } catch (e) {
-          tray = new Tray(path.join(__dirname, './assets/favicon.png'));
+          tray = new Tray(path.join(__dirname, './front/favicon.png'));
         }
         const contextMenu = Menu.buildFromTemplate([
           menuItems.show,

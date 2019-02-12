@@ -12,7 +12,7 @@ const config = {
   website: 'https://github.com/yuri2peter/reacoa',
   about: 'Powered by Reacoa.\nhttps://github.com/yuri2peter/reacoa',
   win: {
-    tray: false,
+    tray: true,
     menu: true,
   },
   linux: {

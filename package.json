@@ -4,12 +4,12 @@
   "description": "react+koa+electron--out-of-the-box.",
   "main": "index.js",
   "scripts": {
-    "init": "npm ci & cd ./server & npm ci & cd ../front & npm ci && npm run build & cd ../",
+    "init": "npm ci & cd ./server & npm ci & cd ../front & npm ci && npm run build",
     "start": "electron ./server",
     "build-front": "cd ./front & npm run build",
-    "build-win": "electron-packager ./server reacoa --platform=win32 --arch=x64 --out ./electron --app-version 0.1.0 --overwrite --icon=./front/public/favicon.ico --asar",
-    "build-linux": "electron-packager ./server reacoa --platform=linux --arch=x64 --out ./electron --app-version 0.1.0 --overwrite --icon=./front/public/favicon.ico --asar",
-    "build-mac": "electron-packager ./server reacoa --platform=darwin --arch=x64 --out ../electron --app-version 0.1.0 --overwrite --icon=./front/public/favicon.ico --asar"
+    "build-win": "electron-packager ./server --platform=win32 --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
+    "build-linux": "electron-packager ./server --platform=linux --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
+    "build-mac": "electron-packager ./server --platform=darwin --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar"
   },
   "repository": {
     "type": "git",
