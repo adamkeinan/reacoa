@@ -104,7 +104,7 @@ If you are using Electron, change app title in `/package.json`.
 
 ## Release
 
-### [0.1.2](https://github.com/yuri2peter/reacoa/tree/0.1.2)
+### [v0.1.2](https://github.com/yuri2peter/reacoa/tree/v0.1.2)
 
 - better `README.md`
 - use 'npm ci' to install dependence
