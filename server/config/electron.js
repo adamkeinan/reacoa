@@ -16,7 +16,7 @@ const config = {
     menu: true,
   },
   linux: {
-    tray: false,
+    tray: false, // Strongly recommended to set it to FALSE.
     menu: true,
   },
   mac: {
