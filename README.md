@@ -18,6 +18,8 @@ $ npm start
 | ------- | ----------- | ------------------------------------------------------------ |
 | /       | init        | Install dependence and build front-end files.                                         |
 | /       | start       | Run electron.                                                |
+| /       | lint        | Eslint check.                                                |
+| /       | lint-fix    | Eslint check and autofix.                                   |
 | /       | build-front | Build front-end code. Saved in `/front/build` & `/server/front.` |
 | /       | build-win   | Build Electron app for windows platform.                     |
 | /       | build-linux | Build Electron app for linux platform.                       |
@@ -117,6 +119,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- eslint tools
 - add related Doc links
 - fixed a typo in script build-mac
 - fixed a typo in script init
