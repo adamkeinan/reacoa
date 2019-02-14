@@ -7,7 +7,9 @@ function getDisplayName(WrappedComponent) {
 
 const withErrorBoundary = () => (WrappedComponent) => {
   return class extends PureComponent {
-    static displayName = `withErrorBoundary(${getDisplayName(WrappedComponent)})`;
+    static displayName =
+      `withErrorBoundary(${getDisplayName(WrappedComponent)})`;
+
     render() {
       return (
         <ErrorBoundary>

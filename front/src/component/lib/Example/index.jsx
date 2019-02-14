@@ -9,42 +9,47 @@ const reacoa = reacoaStorage ? JSON.parse(reacoaStorage) : {};
 
 class Example extends Component {
   inputRef = null;
+
   state = {
     port: reacoa.port || '80',
     online: false,
     fetching: true,
   };
+
   componentDidMount() {
     this.post();
   }
 
   onPortChange = (e) => {
     this.setState({
-      port: e.target.value
-    }, this.post)
+      port: e.target.value,
+    }, this.post);
   };
+
   @withDebounce(500)
   async post() {
     const url = `http://127.0.0.1:${this.state.port}/test`;
     try {
       this.setState({ fetching: true });
       await axios.post(url);
-      this.setState({ online: true })
+      this.setState({ online: true });
     } catch (e) {
-      this.setState({ online: false })
+      this.setState({ online: false });
     } finally {
       this.setState({ fetching: false });
       if (this.inputRef) {
         this.inputRef.focus();
       }
     }
-  };
+  }
+  ;
   render() {
+    const onlineStyle = this.state.online
+      ? { style: { color: 'green' }, children: '[online]' }
+      : { style: { color: 'red' }, children: '[offline]' };
     const linkStatusProps = this.state.fetching
-      ? {style: {color: 'yellow'}, children: '[fetching]'}
-      : this.state.online
-        ? {style: {color: 'green'}, children: '[online]'}
-        : {style: {color: 'red'}, children: '[offline]'};
+      ? { style: { color: 'yellow' }, children: '[fetching]' }
+      : onlineStyle;
     return (
       <div className="App">
         <header className="App-header">
@@ -52,22 +57,27 @@ class Example extends Component {
           <p>
             <span>http://127.0.0.1: </span>
             <input
-              style={{ width: `${(this.state.port.length + 1)*0.6}em` }}
-              ref={(ref)=>{this.inputRef = ref;ref && ref.focus()}}
+              style={{ width: `${(this.state.port.length + 1) * 0.6}em` }}
+              ref={(ref) => {
+                this.inputRef = ref;
+                if (ref) { ref.focus(); }
+              }}
               className="App-port-input"
               onChange={this.onPortChange}
               disabled={this.state.fetching}
               defaultValue={this.state.port}/>
             <span> /test </span>
-            <span
+            <button
               onClick={this.post.bind(this)}
               title="Retry"
               className="App-link-status"
               {...linkStatusProps} />
             {
               reacoa.electron
-                ? <p className="App-server-hint">Enjoying Reacoa in Electron :)</p>
-                : <p className="App-server-hint">Start your server by <code>cd ./server && npm start</code></p>
+                ? <p className="App-server-hint">
+                  Enjoying Reacoa in Electron :)</p>
+                : <p className="App-server-hint">
+                  Start your server by <code>cd ./server && npm start</code></p>
             }
           </p>
           <a

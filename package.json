@@ -6,8 +6,8 @@
   "scripts": {
     "init": "npm ci && cd ./server && npm ci && cd ../front && npm ci && npm run build",
     "start": "electron ./server",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
+    "lint": "eslint --ext .jsx --ext .js .",
+    "lint-fix": "eslint --ext .jsx --ext .js . --fix",
     "build-front": "cd ./front && npm run build",
     "build-win": "electron-packager ./server --platform=win32 --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
     "build-linux": "electron-packager ./server --platform=linux --arch=x64 --out ./electron --overwrite --icon=./front/public/favicon.ico --asar",
@@ -25,9 +25,11 @@
   "homepage": "https://github.com/yuri2peter/reacoa#readme",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "prettier": "^1.16.4",
+    "electron": "^4.0.1",
+    "electron-packager": "^13.0.1",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-google": "^0.12.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-babel": "^5.3.0",
@@ -36,10 +38,9 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.0.1",
-    "replace-in-file": "^3.4.3",
-    "electron": "^4.0.1",
-    "electron-packager": "^13.0.1",
     "fs-extra": "^7.0.0",
-    "inquirer": "^6.2.1"
+    "inquirer": "^6.2.1",
+    "prettier": "^1.16.4",
+    "replace-in-file": "^3.4.3"
   }
 }

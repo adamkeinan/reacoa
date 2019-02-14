@@ -13,6 +13,7 @@ const path = require('path');
     }
   } catch (e) {
     console.error(e);
-    console.warn('An error occurred copying files to "server/front". You could do this manually. ');
+    console.warn('An error occurred copying files to "server/front".' +
+      ' You could do this manually. ');
   }
 })();

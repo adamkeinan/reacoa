@@ -4,12 +4,12 @@ class Example {
   @observable counter = 0;
 
   @computed
-  get counterComputed () {
+  get counterComputed() {
     return `[${this.counter}]`;
   }
 
   add = () => {
-    this.counter+=1;
+    this.counter += 1;
   }
 }
 

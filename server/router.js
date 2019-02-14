@@ -10,7 +10,7 @@ module.exports = (app) => {
   router.post('/test', (ctx) => {
     ctx.body = {
       error: null,
-      data: 'server is running.'
+      data: 'server is running.',
     };
   });
 

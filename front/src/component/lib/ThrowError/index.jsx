@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class ThrowError extends Component {
   componentDidMount() {
-    throw new Error()
+    throw new Error();
   }
 
   render() {

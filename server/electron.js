@@ -11,7 +11,7 @@ let mainWindow; // Keep a global reference of the window object
   let showHiddenTips = true;
   let closing = false;
 
-  app.on('ready', function createWindow () {
+  app.on('ready', function createWindow() {
     Menu.setApplicationMenu(null);
     mainWindow = new BrowserWindow({
       width: config.width,
@@ -31,7 +31,7 @@ let mainWindow; // Keep a global reference of the window object
         label: 'Show', type: 'normal',
         click: () => {
           mainWindow.show();
-        }
+        },
       },
       about: {
         label: 'About', type: 'normal',
@@ -41,13 +41,13 @@ let mainWindow; // Keep a global reference of the window object
             title: 'About',
             message: config.about,
           });
-        }
+        },
       },
       website: {
         label: 'Website', type: 'normal',
         click: () => {
           shell.openExternal(config.website);
-        }
+        },
       },
       exit: {
         label: 'Exit',
@@ -74,7 +74,6 @@ let mainWindow; // Keep a global reference of the window object
         globalShortcut.unregister('CommandOrControl+Shift+I');
         globalShortcut.unregister('CommandOrControl+R');
         globalShortcut.unregister('CommandOrControl+Q');
-
       };
       mainWindow.on('blur', unbindKeys);
       mainWindow.on('focus', bindKeys);
@@ -94,7 +93,8 @@ let mainWindow; // Keep a global reference of the window object
           })}')`,
           false, loadHome
         );
-      } else if (typeof config.server === 'string' && config.server.length > 0) {
+      } else if (typeof config.server === 'string'
+        && config.server.length > 0) {
         mainWindow.loadURL(config.server);
       } else {
         const entrance = path.resolve(__dirname, './front/index.html');
@@ -104,7 +104,8 @@ let mainWindow; // Keep a global reference of the window object
           dialog.showMessageBox(mainWindow, {
             type: 'info',
             title: 'Missing Static Files',
-            message: 'Require compiled static files.\nTry "npm run build-front" first.',
+            message: 'Require compiled static files.\n' +
+              'Try "npm run build-front" first.',
           });
           closeApp();
         }
@@ -117,7 +118,8 @@ let mainWindow; // Keep a global reference of the window object
           app.quit();
         } else {
           app.on('second-instance', () => {
-            // Someone tried to run a second instance, we should focus our window.
+            // Someone tried to run a second instance,
+            // we should focus our window.
             if (mainWindow) {
               if (mainWindow.isMinimized()) mainWindow.restore();
               mainWindow.focus();
@@ -184,8 +186,8 @@ let mainWindow; // Keep a global reference of the window object
               { role: 'paste' },
               { role: 'pasteandmatchstyle' },
               { role: 'delete' },
-              { role: 'selectall' }
-            ]
+              { role: 'selectall' },
+            ],
           },
           {
             label: 'View',
@@ -198,8 +200,8 @@ let mainWindow; // Keep a global reference of the window object
               { role: 'zoomin' },
               { role: 'zoomout' },
               { type: 'separator' },
-              { role: 'togglefullscreen' }
-            ]
+              { role: 'togglefullscreen' },
+            ],
           },
           {
             role: 'window',
@@ -207,14 +209,14 @@ let mainWindow; // Keep a global reference of the window object
               { role: 'minimize' },
               { role: 'close' },
               menuItems.exit,
-            ]
+            ],
           },
           {
             role: 'help',
             submenu: [
               menuItems.website,
               menuItems.about,
-            ]
+            ],
           },
         ]));
       }
