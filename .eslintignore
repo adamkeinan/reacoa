@@ -1,0 +1,10 @@
+.idea
+node_modules
+electron
+yarn-error.log*
+/server/front/
+/front/build/
+/front/scripts/build.js
+/front/scripts/start.js
+/front/scripts/test.js
+/front/config/
