@@ -1,8 +1,10 @@
+// eslint-disable-next-line
 const { app, Menu, BrowserWindow, globalShortcut, Tray, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const config = require('./config/electron');
 const server = require('./app');
+
 let mainWindow; // Keep a global reference of the window object
 (async () => {
   let tray;
@@ -16,8 +18,8 @@ let mainWindow; // Keep a global reference of the window object
       height: config.height,
       resizable: config.resizable,
     });
-    mainWindow.on('closed', function () {
-      mainWindow = null
+    mainWindow.on('closed', () => {
+      mainWindow = null;
     });
     const closeApp = () => {
       closing = true;
@@ -38,7 +40,7 @@ let mainWindow; // Keep a global reference of the window object
             type: 'info',
             title: 'About',
             message: config.about,
-          })
+          });
         }
       },
       website: {
@@ -112,13 +114,13 @@ let mainWindow; // Keep a global reference of the window object
       if (config.singleInstance) {
         const gotTheLock = app.requestSingleInstanceLock();
         if (!gotTheLock) {
-          app.quit()
+          app.quit();
         } else {
-          app.on('second-instance', (event, commandLine, workingDirectory) => {
+          app.on('second-instance', () => {
             // Someone tried to run a second instance, we should focus our window.
             if (mainWindow) {
               if (mainWindow.isMinimized()) mainWindow.restore();
-              mainWindow.focus()
+              mainWindow.focus();
             }
           });
         }
@@ -161,11 +163,11 @@ let mainWindow; // Keep a global reference of the window object
         });
         mainWindow.on('show', () => {
           mainWindow.setSkipTaskbar(false);
-          tray.setHighlightMode('always')
+          tray.setHighlightMode('always');
         });
         mainWindow.on('hide', () => {
-          tray.setHighlightMode('never')
-        })
+          tray.setHighlightMode('never');
+        });
       }
     };
     const setMenu = () => {
@@ -223,12 +225,12 @@ let mainWindow; // Keep a global reference of the window object
     setTray();
     setMenu();
   });
-  app.on('window-all-closed', function () {
+  app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       if (mainWindow) {
-        mainWindow.webContents.closeDevTools()
+        mainWindow.webContents.closeDevTools();
       }
-      app.quit()
+      app.quit();
     }
   });
 })();

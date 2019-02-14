@@ -25,7 +25,7 @@ module.exports = async function server (preferPort = 80) {
         home,
         blank,
         seed,
-      })
+      });
     });
   });
 };

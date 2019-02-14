@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -18,12 +16,11 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const paths = require('./paths');
-const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-
+const getClientEnvironment = require('./env');
+const paths = require('./paths');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -161,13 +158,13 @@ module.exports = function(webpackEnv) {
         : isEnvDevelopment && 'static/js/[name].chunk.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
-      publicPath: publicPath,
+      publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info =>
-            path
-              .relative(paths.appSrc, info.absoluteResourcePath)
-              .replace(/\\/g, '/')
+          path
+            .relative(paths.appSrc, info.absoluteResourcePath)
+            .replace(/\\/g, '/')
         : isEnvDevelopment &&
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
     },
@@ -223,13 +220,13 @@ module.exports = function(webpackEnv) {
             parser: safePostCssParser,
             map: shouldUseSourceMap
               ? {
-                  // `inline: false` forces the sourcemap to be output into a
-                  // separate file
-                  inline: false,
-                  // `annotation: true` appends the sourceMappingURL to the end of
-                  // the css file, helping the browser find the sourcemap
-                  annotation: true,
-                }
+                // `inline: false` forces the sourcemap to be output into a
+                // separate file
+                inline: false,
+                // `annotation: true` appends the sourceMappingURL to the end of
+                // the css file, helping the browser find the sourcemap
+                annotation: true,
+              }
               : false,
           },
         }),
@@ -292,24 +289,6 @@ module.exports = function(webpackEnv) {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-
-        // First, run the linter.
-        // It's important to do this before Babel processes the JS.
-        {
-          test: /\.(js|mjs|jsx)$/,
-          enforce: 'pre',
-          use: [
-            {
-              options: {
-                formatter: require.resolve('react-dev-utils/eslintFormatter'),
-                eslintPath: require.resolve('eslint'),
-                
-              },
-              loader: require.resolve('eslint-loader'),
-            },
-          ],
-          include: paths.appSrc,
-        },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
@@ -336,7 +315,7 @@ module.exports = function(webpackEnv) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-                
+
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -376,7 +355,7 @@ module.exports = function(webpackEnv) {
                 ],
                 cacheDirectory: true,
                 cacheCompression: isEnvProduction,
-                
+
                 // If an error happens in a package, it's possible to be
                 // because it was compiled. Thus, we don't want the browser
                 // debugger to show the original code. Instead, the code
@@ -511,19 +490,19 @@ module.exports = function(webpackEnv) {
           },
           isEnvProduction
             ? {
-                minify: {
-                  removeComments: true,
-                  collapseWhitespace: true,
-                  removeRedundantAttributes: true,
-                  useShortDoctype: true,
-                  removeEmptyAttributes: true,
-                  removeStyleLinkTypeAttributes: true,
-                  keepClosingSlash: true,
-                  minifyJS: true,
-                  minifyCSS: true,
-                  minifyURLs: true,
-                },
-              }
+              minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              },
+            }
             : undefined
         )
       ),
@@ -572,7 +551,7 @@ module.exports = function(webpackEnv) {
       // having to parse `index.html`.
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
-        publicPath: publicPath,
+        publicPath,
       }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
@@ -587,7 +566,7 @@ module.exports = function(webpackEnv) {
           clientsClaim: true,
           exclude: [/\.map$/, /asset-manifest\.json$/],
           importWorkboxFrom: 'cdn',
-          navigateFallback: publicUrl + '/index.html',
+          navigateFallback: `${publicUrl  }/index.html`,
           navigateFallbackBlacklist: [
             // Exclude URLs starting with /_, as they're likely an API call
             new RegExp('^/_'),

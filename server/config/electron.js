@@ -25,8 +25,8 @@ const config = {
   },
 };
 
-if (is.windows()) { Object.assign(config, config.win) }
-if (is.linux()) { Object.assign(config, config.linux) }
-if (is.macOS()) { Object.assign(config, config.mac) }
+if (is.windows()) { Object.assign(config, config.win); }
+if (is.linux()) { Object.assign(config, config.linux); }
+if (is.macOS()) { Object.assign(config, config.mac); }
 
 module.exports = config;

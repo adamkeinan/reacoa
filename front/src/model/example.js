@@ -2,13 +2,15 @@ import { observable, computed } from 'mobx';
 
 class Example {
   @observable counter = 0;
+
   @computed
   get counterComputed () {
-    return `[${this.counter}]`
+    return `[${this.counter}]`;
   }
+
   add = () => {
-    this.counter++;
+    this.counter+=1;
   }
 }
 
-export default Example
+export default Example;

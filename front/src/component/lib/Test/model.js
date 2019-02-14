@@ -1,7 +1,7 @@
-import { observable, computed } from 'mobx';
+// import { observable, computed } from 'mobx';
 
 class Model {
 
 }
 
-export default Model
+export default Model;
