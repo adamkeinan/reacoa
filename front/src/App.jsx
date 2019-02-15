@@ -6,7 +6,7 @@ import NotFound from './page/404';
 // Use HashRouter in electron case.
 const Router = window.location.pathname.includes('index.html')
   ? HashRouter
-  : BrowserRouter
+  : BrowserRouter;
 const App = () => {
   return (
     <Router>
