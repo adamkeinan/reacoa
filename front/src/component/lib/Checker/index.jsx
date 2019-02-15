@@ -26,7 +26,10 @@ class Checker extends Component {
         this.setState({ loading: false, passed });
       })();
     } else {
-      this.setState({ loading: false, passed: checker });
+      this.state = {
+        loading: false,
+        passed: checker,
+      };
     }
   }
 
