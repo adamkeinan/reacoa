@@ -119,6 +119,10 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- libs
+  - Checker
+  - CssBaseLine
+  - WarpperCenter
 - eslint tools
 - add related Doc links
 - fixed a typo in script build-mac
