@@ -16,17 +16,19 @@
     "jest": true
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": [2, 2],
     "arrow-spacing": [2, { "before": true, "after": true }],
     "block-spacing": [2, "always"],
+    "semi": 2,
     "space-infix-ops": 2,
     "no-param-reassign": 1,
     "import/prefer-default-export": 1,
     "react/destructuring-assignment": 1,
     "require-jsdoc": 1,
     "global-require": 1,
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
     "react/button-has-type": 0,
+    "no-trailing-spaces": 0,
     "no-invalid-this": 0
   }
 }
