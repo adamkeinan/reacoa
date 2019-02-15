@@ -24,13 +24,13 @@
     "no-param-reassign": 1,
     "import/prefer-default-export": 1,
     "react/destructuring-assignment": 1,
-    "require-jsdoc": 1,
     "global-require": 1,
     "jsx-a11y/click-events-have-key-events": 1,
     "jsx-a11y/no-static-element-interactions": 1,
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
     "react/button-has-type": 0,
     "no-trailing-spaces": 0,
+    "require-jsdoc": 0,
     "no-invalid-this": 0
   }
 }
