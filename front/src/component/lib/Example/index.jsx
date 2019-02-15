@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import withDebounce from 'debounce-decorator';
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './index.sass';
+import defines from '../../../common/defines';
 
 const reacoaStorage = localStorage.getItem('reacoa');
 const reacoa = reacoaStorage ? JSON.parse(reacoaStorage) : {};
@@ -50,8 +52,20 @@ class Example extends Component {
     const linkStatusProps = this.state.fetching
       ? { style: { color: 'yellow' }, children: '[fetching]' }
       : onlineStyle;
+    const Env = styled.span`
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      color: darkgrey;
+      font-size: 12px;
+    `;
     return (
       <div className="App">
+        <Env>
+          {defines.IS_PRODUCTION
+            ? 'PRODUCTION'
+            : 'DEVELOPMENT'}
+        </Env>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo"/>
           <p>
