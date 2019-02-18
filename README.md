@@ -119,10 +119,12 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- store
 - libs
-  - Checker
   - CssBaseLine
   - WarpperCenter
+- dependence
+  - react-loading
 - eslint tools
 - add related Doc links
 - fixed a typo in script build-mac
