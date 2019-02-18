@@ -1,3 +1,4 @@
+/* eslint react/forbid-prop-types: 0 */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -14,14 +15,20 @@ const Inner = styled.div`
   transform:translate( -50%, -50%);
 `;
 
-const WarpperCenter = ({ children, ...props }) => {
+const WarpperCenter = ({ OuterProps, InnerProps, children }) => {
   return (
-    <Outer {...props}>
-      <Inner>{children}</Inner>
+    <Outer {...OuterProps}>
+      <Inner {...InnerProps}>{children}</Inner>
     </Outer>
   );
 };
 WarpperCenter.propTypes = {
+  OuterProps: PropTypes.object,
+  InnerProps: PropTypes.object,
   children: PropTypes.node.isRequired,
+};
+WarpperCenter.defaultProps = {
+  OuterProps: {},
+  InnerProps: {},
 };
 export default WarpperCenter;
