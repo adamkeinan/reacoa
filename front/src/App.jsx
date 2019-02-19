@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Index from './page';
-import NotFound from './page/404';
+import { Router, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import CssBaseLine from './component/lib/CssBaseLine';
 import storeRoot from './store';
 
@@ -14,10 +14,10 @@ const App = () => {
   return (
     <React.Fragment>
       <CssBaseLine/>
-      <Router>
+      <Router history={history}>
         <Switch>
-          <Route path="/" exact component={Index} />
-          <Route component={NotFound} />
+          <Route path="/" exact component={require('./page/index').default} />
+          <Route component={require('./page/404').default} />
         </Switch>
       </Router>
     </React.Fragment>
