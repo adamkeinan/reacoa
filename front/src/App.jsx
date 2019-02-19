@@ -1,13 +1,10 @@
 import React from 'react';
-import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Index from './page';
 import NotFound from './page/404';
 import CssBaseLine from './component/lib/CssBaseLine';
 
-// Use HashRouter in electron case.
-const Router = window.location.pathname.includes('index.html')
-  ? HashRouter
-  : BrowserRouter;
+const Router = BrowserRouter;
 const App = () => {
   return (
     <React.Fragment>
