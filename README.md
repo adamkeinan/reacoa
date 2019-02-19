@@ -119,20 +119,21 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
-- set 'home'='Your remote APP URL' in file `/server/config/electron.js`
-- use absolute path in electron
-- http server is necessary in electron app
-- http server is accessible for intranets only (IP whitelist)
-- store
-- libs
+- [front] mobx store
+- [front] use browser router
+- [electron] set 'home'='Your remote APP URL' in file `/server/config/electron.js`
+- [electron] use absolute path
+- [electron] http server is necessary
+- [server] http server is accessible for intranets only (IP whitelist)
+- [front] libs
   - CssBaseLine
   - WarpperCenter
-- dependence
+- [front] dependence
   - react-loading
-- eslint tools
-- add related Doc links
-- fixed a typo in script build-mac
-- fixed a typo in script init
+- [global] eslint tools
+- [global] add related Doc links
+- [global] fixed a typo in script build-mac
+- [global] fixed a typo in script init
 
 ### [v0.1.2](https://github.com/yuri2peter/reacoa/tree/v0.1.2)
 
