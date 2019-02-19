@@ -1,3 +1,5 @@
+import storeRoot from '../store';
+
 /**
  * Wait for a while
  * @param {number} time  ms
@@ -16,4 +18,12 @@ export const wait = async (time) => {
  */
 export const isPromiseAlike = (subject) => {
   return typeof subject.then === 'function';
+};
+
+/**
+ * react-router redirect
+ * @param {string} path
+ */
+export const redirect = (path) => {
+  storeRoot.router.routing.push(path);
 };
