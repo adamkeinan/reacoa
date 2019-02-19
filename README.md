@@ -119,6 +119,10 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- set 'home'='Your remote APP URL' in file `/server/config/electron.js`
+- use absolute path in electron
+- http server is necessary in electron app
+- http server is accessible for intranets only (IP whitelist)
 - store
 - libs
   - CssBaseLine

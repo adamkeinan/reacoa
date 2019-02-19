@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 const { app, Menu, BrowserWindow, globalShortcut, Tray, dialog, shell } = require('electron');
 const path = require('path');
-const fs = require('fs');
 const config = require('./config/electron');
 const server = require('./app');
 
@@ -79,7 +78,9 @@ let mainWindow; // Keep a global reference of the window object
       mainWindow.on('focus', bindKeys);
     };
     const initPage = async () => {
-      if (config.server === true) {
+      if (config.home) {
+        mainWindow.loadURL(config.home);
+      } else {
         const { home, blank, port, seed } = await server(3001);
         const loadHome = () => { mainWindow.loadURL(home); };
         const loadBlank = () => { mainWindow.loadURL(blank); };
@@ -93,22 +94,6 @@ let mainWindow; // Keep a global reference of the window object
           })}')`,
           false, loadHome
         );
-      } else if (typeof config.server === 'string'
-        && config.server.length > 0) {
-        mainWindow.loadURL(config.server);
-      } else {
-        const entrance = path.resolve(__dirname, './front/index.html');
-        if (fs.existsSync(entrance)) {
-          mainWindow.loadFile(entrance);
-        } else {
-          dialog.showMessageBox(mainWindow, {
-            type: 'info',
-            title: 'Missing Static Files',
-            message: 'Require compiled static files.\n' +
-              'Try "npm run build-front" first.',
-          });
-          closeApp();
-        }
       }
     };
     const singleCheck = () => {

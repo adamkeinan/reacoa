@@ -6,7 +6,7 @@ const config = {
   resizable: true,
   enableDevTools: true,
   singleInstance: true,
-  server: false,
+  home: '',
   tray: false,
   menu: false,
   website: 'https://github.com/yuri2peter/reacoa',

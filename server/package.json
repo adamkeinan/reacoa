@@ -15,6 +15,7 @@
     "get-port": "^4.1.0",
     "koa": "^2.7.0",
     "koa-body": "^4.0.4",
+    "koa-ip": "^2.0.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.10.1",
     "koa-static": "^5.0.0",
