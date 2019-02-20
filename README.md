@@ -119,6 +119,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- [front] use taobao css reset in CssBaseLine
 - [front] mobx store
 - [front] use browser router
 - [electron] set 'home'='Your remote APP URL' in file `/server/config/electron.js`
