@@ -9,7 +9,7 @@ const router = require('./router');
 
 module.exports = async function server(preferPort = 80) {
   const seed = uuid.v1();
-  const port = await require('get-port')({ port: preferPort });
+  const port = await require('portfinder').getPortPromise({ port: preferPort });
   const app = new Koa();
 
   // By default, only intranet users access is allowed

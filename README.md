@@ -119,6 +119,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- [global] use `portfinder` instead of `get-port`
 - [front] use taobao css reset in CssBaseLine
 - [front] mobx store
 - [front] use browser router

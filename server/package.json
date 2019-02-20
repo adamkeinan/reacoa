@@ -12,7 +12,6 @@
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "electron-is": "^3.0.0",
-    "get-port": "^4.1.0",
     "koa": "^2.7.0",
     "koa-body": "^4.0.4",
     "koa-ip": "^2.0.0",
@@ -21,6 +20,7 @@
     "koa-static": "^5.0.0",
     "lowdb": "^1.0.0",
     "mobx": "^5.9.0",
+    "portfinder": "^1.0.20",
     "shortid": "^2.2.14",
     "uuid": "^3.3.2"
   }

@@ -1,4 +1,4 @@
-import('normalize.css');
+import('./index.css');
 
 const CssBaseLine = () => { return null; };
 
