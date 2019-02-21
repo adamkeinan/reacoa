@@ -53,16 +53,16 @@ $ npm start
     |       |   |-- lib # predefined components by reacoa
     |       |       |-- Example # reacoa default home page
     |       |       |-- Template # used for replication usually
-    |       |       |-- Test
     |       |       |-- ThrowError # throw a error for error catching test
     |       |       |-- WithErrorBoundary # decorator for error catching
-    |       |-- model # mobx models
-    |       |   |-- example.js
-    |       |   |-- index.js
+    |       |-- store # mobx store
+    |       |   |-- model
+    |       |       |-- example.js
+    |       |   |-- index.js # root store
+    |       |   |-- router.js # router store
     |       |-- page
     |       |   |-- 404.jsx
     |       |   |-- index.jsx
-    |       |   |-- test.jsx
     |       |-- util
     |           |-- example.js
     |-- server # back-end project(optional)
@@ -119,6 +119,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- [front] remove `CssBaseLine`
 - [global] use `portfinder` instead of `get-port`
 - [front] use taobao css reset in CssBaseLine
 - [front] mobx store
