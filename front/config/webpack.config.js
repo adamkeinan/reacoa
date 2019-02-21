@@ -19,6 +19,8 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const preRenderList = require('./preRenderList');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
@@ -604,6 +606,13 @@ module.exports = function(webpackEnv) {
           silent: true,
           formatter: typescriptFormatter,
         }),
+      preRenderList && preRenderList.length > 0 && isEnvProduction
+      && new PrerenderSPAPlugin({
+        // Required - The path to the webpack-outputted app to prerender.
+        staticDir: path.join(__dirname, '../build'),
+        // Required - Routes to render.
+        routes: preRenderList,
+      })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

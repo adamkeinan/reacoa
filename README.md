@@ -41,6 +41,7 @@ $ npm start
     |   |-- package.json
     |   |-- build # built files
     |   |-- config # dev configs
+    |       |-- preRenderList.js # list paths need to pre-render
     |   |-- public # html frame
     |   |-- scripts # npm scripts
     |   |-- src # source dir
@@ -119,6 +120,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- [front] prerender-spa-plugin
 - [front] remove `CssBaseLine`
 - [global] use `portfinder` instead of `get-port`
 - [front] use taobao css reset in CssBaseLine
