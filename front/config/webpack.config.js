@@ -21,6 +21,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const WebpackBar = require('webpackbar');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const preRenderList = require('./preRenderList');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -484,6 +485,12 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+
+      // Visualize size of webpack output files with an interactive zoomable tree map.
+      isEnvProduction && new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+      }),
+
       // Elegant ProgressBar and Profiler for Webpack
       new WebpackBar(),
 
