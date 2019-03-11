@@ -20,6 +20,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const WebpackBar = require('webpackbar');
 const preRenderList = require('./preRenderList');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -483,6 +484,9 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      // Elegant ProgressBar and Profiler for Webpack
+      new WebpackBar(),
+
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(

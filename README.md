@@ -120,6 +120,7 @@ If you are using Electron, change app name and version in `/server/package.json`
 
 ### [latest](https://github.com/yuri2peter/reacoa.git)
 
+- [front] webpack progress bar
 - [front] webpack alias /src and eslint configs
 - [global] cross-env
 - [front] prerender-spa-plugin
